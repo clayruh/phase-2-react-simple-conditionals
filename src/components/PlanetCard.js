@@ -1,14 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PlanetFacts from "./PlanetFacts"
+import PlanetImage from './PlanetImage'
 
-function PlanetCard({planet}) {
+export default function PlanetCard({planet}) {
+
+  const [info, setInfo] = useState(true)
+
+  function handleClick() {
+    setInfo(!info)
+  }
 
   return (
-    <div className="card" onClick={() => console.log('Toggle!')}>
-      <h2>{planet.name}</h2>
-      <img className="" src={planet.image} alt={planet.name} />
+    <div className="card" onClick={handleClick}>
+      {info ? <PlanetImage planet={planet}/> : <PlanetFacts planet={planet}/> }
     </div>
   )
 }
-
-export default PlanetCard
